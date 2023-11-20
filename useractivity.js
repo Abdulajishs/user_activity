@@ -41,16 +41,29 @@ function deletePost() {
     })
 }
 
-Promise.all([create3rdPost() ,create4thPost(),updateLastUserActivityTime()]).then((value)=>{
+let update = async ()=>{
+    let post3 = await create3rdPost();
+    let post4 = await create4thPost();
     console.log("After creating post 4 >>>>>>>");
+    console.log(new Date());
+    let useract = await updateLastUserActivityTime();
+    let deleting = await deletePost();
+}
+
+update().then(()=>{
     console.log(posts);
-    console.log(`User last time activity ${value}`);
+})
+
+// Promise.all([create3rdPost() ,create4thPost(),updateLastUserActivityTime()]).then((value)=>{
+//     console.log("After creating post 4 >>>>>>>");
+//     console.log(posts);
+//     console.log(`User last time activity ${value}`);
     
-})
-.then(()=>{
-    deletePost();
-    console.log(posts);
-})
+// })
+// .then(()=>{
+//     deletePost();
+//     console.log(posts);
+// })
 
 
 
